@@ -42,3 +42,8 @@ body {
 .modal-coleta-titulo {
     font-size: 18pt;
 }
+
+.btn-cancelar {
+    background-color: #AAAAAA !important;
+    color: #444444 !important;
+}

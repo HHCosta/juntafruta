@@ -21,4 +21,8 @@ function startModalColeta()
     $('#btnColeta').on('click', function() {
         $('#modalColeta').modal('open');
     });
+    
+    $('#btnModalColetaCancelar').on('click', function(){
+        $('#modalColeta').modal('close');
+    });
 }
