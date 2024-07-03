@@ -21,3 +21,24 @@ body {
     height: initial !important;
     line-height: initial !important;
 } */
+
+.footer-fixed footer {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.footer-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn-iniciar-coleta {
+    width: 100%;
+    height: 60px !important;
+    padding-top: 10px !important;
+    font-size: 14pt !important;
+}
+
+.modal-coleta-titulo {
+    font-size: 18pt;
+}

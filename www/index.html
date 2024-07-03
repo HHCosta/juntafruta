@@ -23,7 +23,7 @@
 
         <nav>
             <div class="nav-wrapper">
-                <a data-target="appMenu" class="waves-effect btn-flat sidenav-trigger">
+                <a data-target="appMenu" class="waves-effect sidenav-trigger show-on-medium-and-up">
                     <i class="fa-solid fa-bars"></i>
                 </a>
             </div>
@@ -31,13 +31,38 @@
 
         <ul id="appMenu" class="sidenav">
             <li>
-                <a href="#!">Nova Coleta</a>
+                <a href="#!">Iniciar Coleta</a>
             </li>
             <li>
                 <a href="#!">Locais</a>
             </li>
         </ul>
 
+        <!-- ...... -->
+
+        <div class="footer-fixed">
+            <footer class="red lighten-2">
+                <a id="btnColeta" href="#!" class="btn btn-iniciar-coleta">
+                    Iniciar Coleta
+                </a>
+            </footer>
+        </div>
+
+        <div id="modalColeta" class="modal bottom-sheet">
+            <div class="modal-content">
+                <div class="modal-coleta-titulo">
+                    Iniciar Coleta
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="btn">
+                    Cancelar
+                </a>
+                <a href="#!" class="btn">
+                    Cadastrar
+                </a>
+            </div>
+        </div>
 
         <script src="cordova.js"></script>
         <script src="js/jquery.js"></script>
