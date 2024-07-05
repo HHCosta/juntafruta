@@ -47,3 +47,20 @@ body {
     background-color: #AAAAAA !important;
     color: #444444 !important;
 }
+
+.campo-coleta {
+    padding: 5px;
+}
+
+.input-field>label {
+    font-size: 1.3rem !important;
+}
+
+.campo-coleta label {
+    margin-left: 5px;
+}
+
+.app-mapa {
+    width: 100vw;
+    height: calc(100vh - 120px);
+}

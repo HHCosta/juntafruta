@@ -4,7 +4,11 @@
     <head>
         <meta charset="utf-8">
        
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; data: https://ssl.gstatic.com 'unsafe-eval'; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; media-src *; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;"> -->
+
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">
+        <meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *"> 
+
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -15,6 +19,7 @@
         <link href="css/fontawesome/css/fontawesome.css" rel="stylesheet" />
         <link href="css/fontawesome/css/brands.css" rel="stylesheet" />
         <link href="css/fontawesome/css/solid.css" rel="stylesheet" />
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
 
 
         <title>Junta Fruta</title>
@@ -38,7 +43,9 @@
             </li>
         </ul>
 
-        <!-- ...... -->
+        <div id="mapa" class="app-mapa">
+
+        </div>
 
         <div class="footer-fixed">
             <footer class="red lighten-2">
@@ -53,6 +60,13 @@
                 <div class="modal-coleta-titulo">
                     Iniciar Coleta
                 </div>
+            </div>
+            <div>
+                <div class="input-field campo-coleta">
+                    <input id="txtEnderecoColeta" type="text" placeholder="Digite aqui seu endereço" />
+                    <label for="txtEnderecoColeta">Endereço</label>
+                </div>
+                
             </div>
             <div class="modal-footer">
                 <div class="row">
@@ -74,6 +88,7 @@
         <script src="cordova.js"></script>
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+        <script src="leaflet/leaflet.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>
