@@ -82,6 +82,16 @@ function startMapa()
         iconUrl: 'img/pin.png',
         iconSize: [32, 32]
     });
+
+    mapa.on('click', function(e) {        
+        // var popLocation= e.latlng;
+        // var popup = L.popup()
+        // .setLatLng(popLocation)
+        // .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+        // .openOn(mapa);
+        
+        setLocation(e.latlng.lat, e.latlng.lng);
+    });
 }
 
 function starGeolocation()
