@@ -33,7 +33,23 @@ function startModalColeta()
         var valorEndereco = `${endColeta.address.road}, ${endColeta.address.house_number} - ${endColeta.address.suburb} - ${endColeta.address.city} - ${endColeta.address.state} - ${endColeta.address.postcode}`;
         $("#txtEnderecoColeta").val(valorEndereco);
     });
-    
+
+    $('#btnAtualizarEnderecoColeta').on('click', async function() {
+        let endereco = $("#txtEnderecoColeta").val();
+        let response = await getLatLngFromAddress(endereco);
+
+        if(response.length==0)
+        {
+            return;
+        }
+
+        response = response[0];
+
+        let latitude = response.lat;
+        let longitude = response.lon;
+        setLocation(latitude, longitude);
+    });
+
     $('#btnModalColetaCancelar').on('click', function(){
         $('#modalColeta').modal('close');
     });
@@ -63,13 +79,20 @@ function startMapa()
 
 function starGeolocation()
 {
-    navigator.geolocation.getCurrentPosition(geolocationResponse, geolocationError);
+    navigator.geolocation.getCurrentPosition(geolocationResponse, geolocationError, {
+        enableHighAccuracy: true 
+    });
 }
 
 function geolocationResponse(position)
 {
-    userLat = position.coords.latitude;
-    userLng = position.coords.longitude;
+    setLocation(position.coords.latitude, position.coords.longitude);
+}
+
+function setLocation(lat, lng) 
+{
+    userLat = lat;
+    userLng = lng;
     mapa.setView([userLat, userLng]);
 
     L.marker([userLat, userLng], {icon: pinIcon}).addTo(mapa);
@@ -90,7 +113,14 @@ function getAddressFromLatLng(lat, lng)
     
         });
     })
-
-
 }
 
+function getLatLngFromAddress(address)
+{
+    return new Promise((resolve, reject) => {
+        $.get(`https://nominatim.openstreetmap.org/search?format=jsonv2&q=${address}`, function(data){
+
+            resolve(data)
+        })
+    })
+}

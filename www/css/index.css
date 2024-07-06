@@ -81,3 +81,7 @@ body {
 #modalColeta{
     max-height: 75%;
 }
+
+.txt-endereco-coleta{
+    width: calc(100% - 60px) !important;
+}
