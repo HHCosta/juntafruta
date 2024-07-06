@@ -2,6 +2,7 @@ var userLat = null;
 var userLng = null;
 var mapa = null;
 var pinIcon = null;
+var marcador = null;
 
 document.addEventListener('deviceready', onDeviceReady, false);
 
@@ -57,6 +58,9 @@ function startModalColeta()
 
 function startMapa()
 { 
+    userLat = localStorage.getItem("latitude") != null ? parseFloat(localStorage.getItem("latitude")) : null;
+    userLng = localStorage.getItem("longitude") != null ? parseFloat(localStorage.getItem("longitude")) : null;
+
     var opcoes = {
         fullscreenControl:true,
         fullscreenControlOptions: {
@@ -64,8 +68,11 @@ function startMapa()
         }
     }
 
+    let mapaLat = userLat != null ? userLat : -23.572683;
+    let mapaLng = userLng != null ? userLng : -46.625513;
+
     mapa=L.map("mapa",opcoes);
-    mapa.setView([-23.572683, -46.625513], 18);
+    mapa.setView([mapaLat, mapaLng], 18);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
         maxZoom: 19
@@ -79,9 +86,19 @@ function startMapa()
 
 function starGeolocation()
 {
-    navigator.geolocation.getCurrentPosition(geolocationResponse, geolocationError, {
-        enableHighAccuracy: true 
-    });
+    userLat = localStorage.getItem("latitude") != null ? parseFloat(localStorage.getItem("latitude")) : null;
+    userLng = localStorage.getItem("longitude") != null ? parseFloat(localStorage.getItem("longitude")) : null;
+
+    if(userLat == null || userLng == null)
+    {
+        navigator.geolocation.getCurrentPosition(geolocationResponse, geolocationError, {
+            enableHighAccuracy: true 
+        });
+    }
+    else   
+    {
+        setLocation(userLat, userLng);
+    }
 }
 
 function geolocationResponse(position)
@@ -95,7 +112,20 @@ function setLocation(lat, lng)
     userLng = lng;
     mapa.setView([userLat, userLng]);
 
-    L.marker([userLat, userLng], {icon: pinIcon}).addTo(mapa);
+    if(marcador == null)
+    {
+        marcador = L.marker([userLat, userLng], {icon: pinIcon})
+        marcador.addTo(mapa);
+    }
+    else
+    {
+        let latlng = L.latLng(userLat, userLng);
+        marcador.setLatLng(latlng);
+    }
+
+    
+    localStorage.setItem("latitude", userLat.toString());
+    localStorage.setItem("longitude", userLng.toString());
 }
 
 function geolocationError(error)
