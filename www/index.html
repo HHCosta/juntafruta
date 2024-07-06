@@ -62,20 +62,50 @@
                 </div>
             </div>
             <div>
-                <div class="input-field campo-coleta">
-                    <input id="txtEnderecoColeta" type="text" placeholder="Digite aqui seu endereço" />
-                    <label for="txtEnderecoColeta">Endereço</label>
+
+                <div class="row no-margin">
+                    <div class="col s6 no-padding">
+                        <div class="input-field campo-coleta">
+                            <input id="txtEnderecoColeta" type="text" placeholder="Digite aqui seu endereço" />
+                            <label for="txtEnderecoColeta">Endereço</label>
+                        </div>
+                    </div>
+                    <div class="col s6 no-padding">
+                        <div class="input-field campo-coleta">
+                            <input id="txtPesoColeta" type="number" placeholder="Digite aqui seu peso" />
+                            <label for="txtPesoColeta">Peso em Kg (opcional)</label>
+                        </div>
+                    </div>
                 </div>
-                
+
+                <div class="input-field campo-coleta">
+                    <textarea id="txtItensColeta" class="materialize-textarea" placeholder="Digite aqui os itens"></textarea>
+                    <label for="txtItensColeta">Itens a serem coletados</label>
+                </div>
+
+                <div class="row no-margin">
+                    <div class="col s6 no-padding">
+                        <div class="input-field campo-coleta">
+                            <input id="txtPhoneColeta" type="tel" placeholder="Digite aqui seu número de telefone" />
+                            <label for="txtPhoneColeta">Telefone para contato</label>
+                        </div>
+                    </div>
+                    <div class="col s6 no-padding">
+                        <div class="input-field campo-coleta">
+                            <input id="txtNomeContatoColeta" type="text" placeholder="Digite aqui seu nome" />
+                            <label for="txtNomeContatoColeta">Nome do contato</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <div class="row">
-                    <div class="col s6">
+                    <div class="col s6 no-padding">
                         <a id="btnModalColetaCancelar" href="#!" class="btn left btn-cancelar">
                             Cancelar
                         </a>
                     </div>
-                    <div class="col s6">
+                    <div class="col s6 no-padding">
                         <a href="#!" class="btn right">
                             Cadastrar
                         </a>

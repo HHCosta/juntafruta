@@ -50,6 +50,7 @@ body {
 
 .campo-coleta {
     padding: 5px;
+    margin: 0 !important;
 }
 
 .input-field>label {
@@ -60,7 +61,19 @@ body {
     margin-left: 5px;
 }
 
+.campo-coleta textarea {
+    min-height: 60px !important;
+}
+
 .app-mapa {
     width: 100vw;
     height: calc(100vh - 120px);
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
 }
