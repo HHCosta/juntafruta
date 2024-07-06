@@ -77,3 +77,7 @@ body {
 .no-padding {
     padding: 0 !important;
 }
+
+#modalColeta{
+    max-height: 75%;
+}
