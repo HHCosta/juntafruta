@@ -17,6 +17,11 @@ body {
     width:100%;
 }
 
+.btn,
+.btn-small{
+    background-color: #43A047 !important;
+}
+
 /* nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i{
     height: initial !important;
     line-height: initial !important;
@@ -84,4 +89,29 @@ body {
 
 .txt-endereco-coleta{
     width: calc(100% - 60px) !important;
+}
+
+.invalid-field{
+    border-bottom: 1px solid #CC0000 !important;
+    color: #CC0000;
+}
+
+.invalid-field::placeholder{
+    color: #CC0000;
+}
+
+nav{
+    background-color: #43A047 !important;
+}
+
+.app-title{
+    font-size: 18pt;
+    color: #FFFFFF;
+}
+
+.reset-position-btn{
+    position: fixed !important;
+    top: 80px;
+    right: 20px;
+    z-index: 1000 !important;
 }

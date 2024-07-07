@@ -54,6 +54,15 @@ function startModalColeta()
     $('#btnModalColetaCancelar').on('click', function(){
         $('#modalColeta').modal('close');
     });
+
+    $('#btnModalColetaCadastrar').on('click', function(){
+        let isValid = validateFormularioColeta();
+
+        if(isValid == true)
+        {
+
+        }
+    })
 }
 
 function startMapa()
@@ -109,6 +118,12 @@ function starGeolocation()
     {
         setLocation(userLat, userLng);
     }
+
+    $("#btnMapResetPosition").on('click', function(){
+        navigator.geolocation.getCurrentPosition(geolocationResponse, geolocationError, {
+            enableHighAccuracy: true 
+        });
+    });
 }
 
 function geolocationResponse(position)
@@ -163,4 +178,44 @@ function getLatLngFromAddress(address)
             resolve(data)
         })
     })
+}
+
+function validateFormularioColeta()
+{
+    let endereco = $("#txtEnderecoColeta").val();
+    let itens = $("#txtItensColeta").val();
+    let phone = $("#txtPhoneColeta").val();
+    let nome = $("#txtNomeContatoColeta").val();
+
+    let result = true;
+    $("#txtEnderecoColeta").removeClass("invalid-field");
+    $("#txtItensColeta").removeClass("invalid-field");
+    $("#txtPhoneColeta").removeClass("invalid-field");
+    $("#txtNomeContatoColeta").removeClass("invalid-field");
+
+    if(endereco.trim().length == 0)
+    {
+        result = false;
+        $("#txtEnderecoColeta").addClass("invalid-field");
+    }
+    
+    if(itens.trim().length == 0)
+    {
+        result = false;
+        $("#txtItensColeta").addClass("invalid-field");
+    }
+    
+    if(phone.trim().length == 0)
+    {
+        result = false;
+        $("#txtPhoneColeta").addClass("invalid-field");
+    }
+    
+    if(nome.trim().length == 0)
+    {
+        result = false;
+        $("#txtNomeContatoColeta").addClass("invalid-field");
+    }    
+
+    return result;
 }
