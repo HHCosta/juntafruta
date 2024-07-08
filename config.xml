@@ -11,5 +11,11 @@
     <allow-intent href="https://*/*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon src="res/drawable-mdpi/icon_white_green_span.png" density="mdpi" />
+        <icon src="res/drawable-ldpi/icon_white_green_span.png" density="ldpi" />
+        <icon src="res/drawable-hdpi/icon_white_green_span.png" density="hdpi" />
+        <icon src="res/drawable-xhdpi/icon_white_green_span.png" density="xhdpi" />
+        <icon src="res/drawable-xxhdpi/icon_white_green_span.png" density="xxhdpi" />
+        <icon src="res/drawable-xxxhdpi/icon_white_green_span.png" density="xxxhdpi" />
     </platform> 
 </widget>
