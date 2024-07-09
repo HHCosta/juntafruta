@@ -29,5 +29,8 @@
         "GPS_REQUIRED": "true"
       }
     }
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }
