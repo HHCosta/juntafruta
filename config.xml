@@ -18,7 +18,7 @@
         <icon src="res/drawable-xxhdpi/icon_white_green_span.png" density="xxhdpi" />
         <icon src="res/drawable-xxxhdpi/icon_white_green_span.png" density="xxxhdpi" />
 
-        <splash density="land-hdpi" src="res/drawable-hdpi/icon_white_green_span.png" />
+        <!-- <splash density="land-hdpi" src="res/drawable-hdpi/icon_white_green_span.png" />
         <splash density="land-ldpi" src="res/drawable-ldpi/icon_white_green_span.png" />
         <splash density="land-mdpi" src="res/drawable-mdpi/icon_white_green_span.png" />
         <splash density="land-xhdpi" src="res/drawable-xhdpi/icon_white_green_span.png" />
@@ -30,7 +30,9 @@
         <splash density="port-mdpi" src="res/drawable-mdpi/icon_white_green_span.png" />
         <splash density="port-xhdpi" src="res/drawable-xhdpi/icon_white_green_span.png" />
         <splash density="port-xxhdpi" src="res/drawable-xxhdpi/icon_white_green_span.png" />
-        <splash density="port-xxxhdpi" src="res/drawable-xxxhdpi/icon_white_green_span.png" />
+        <splash density="port-xxxhdpi" src="res/drawable-xxxhdpi/icon_white_green_span.png" /> -->
+
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/splashscreen/splash.png" />
 
         <preference name="AndroidWindowSplashScreenBackground" value="#43A047" />
     </platform> 

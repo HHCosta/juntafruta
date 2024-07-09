@@ -113,5 +113,9 @@ nav{
     position: fixed !important;
     top: 80px;
     right: 20px;
-    z-index: 1000 !important;
+    z-index: 990 !important;
+}
+
+.leaflet-top, .leaflet-bottom{
+    z-index: 990 !important;
 }
