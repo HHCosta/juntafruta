@@ -60,7 +60,7 @@ function startModalColeta()
 
         if(isValid == true)
         {
-
+            sendColeta();
         }
     })
 }
@@ -218,4 +218,27 @@ function validateFormularioColeta()
     }    
 
     return result;
+}
+
+function sendColeta()
+{
+    var settings = {
+        "url": "http://109.199.109.64:3000/savecoleta",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+            "endereco": $("#txtEnderecoColeta").val(),
+            "peso": $("#txtPesoColeta").val(),
+            "itens_coleta": $("#txtItensColeta").val(),
+            "nome": $("#txtNomeContatoColeta").val(),
+            "phone": $("#txtPhoneColeta").val()
+        })
+    };
+        
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
 }
