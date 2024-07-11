@@ -1,9 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const bodyParser = require("body-parser");
+const cors = require("cors")
+const app = express();
+const port = 3000;
 
-app.get('/a', (req, res) => {
-    res.send('Hello World!')
+app.use(cors());
+app.use(bodyParser.json());
+
+app.post('/savecoleta', (req, res) => {
+    const coleta = req.body;
+    console.log(coleta);
+    res.send('OK');
 })
 
 app.listen(port, () => {
