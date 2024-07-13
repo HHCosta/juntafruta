@@ -222,6 +222,7 @@ function validateFormularioColeta()
 
 function sendColeta()
 {
+    let deviceid = device.uuid != null ? device.uuid : "dev";
     var settings = {
         "url": "http://109.199.109.64:3000/savecoleta",
         "method": "POST",
@@ -230,6 +231,7 @@ function sendColeta()
             "Content-Type": "application/json"
         },
         "data": JSON.stringify({
+            "deviceid": deviceid,
             "endereco": $("#txtEnderecoColeta").val(),
             "peso": $("#txtPesoColeta").val(),
             "itens_coleta": $("#txtItensColeta").val(),
