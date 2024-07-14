@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.juntafruta" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.juntafruta" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Junta Fruta</name>
     <description>Sample Apache Cordova App</description>
     <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
@@ -11,12 +11,15 @@
     <allow-intent href="https://*/*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon src="res/drawable-mdpi/icon_white_green_span.png" density="mdpi" />
-        <icon src="res/drawable-ldpi/icon_white_green_span.png" density="ldpi" />
-        <icon src="res/drawable-hdpi/icon_white_green_span.png" density="hdpi" />
-        <icon src="res/drawable-xhdpi/icon_white_green_span.png" density="xhdpi" />
-        <icon src="res/drawable-xxhdpi/icon_white_green_span.png" density="xxhdpi" />
-        <icon src="res/drawable-xxxhdpi/icon_white_green_span.png" density="xxxhdpi" />
+
+        <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" />
+
+        <icon background="@color/cdv_splashscreen_icon_background" foreground="res/drawable-mdpi/icon_white_green_span.png" density="mdpi" />
+        <icon background="@color/cdv_splashscreen_icon_background" foreground="res/drawable-ldpi/icon_white_green_span.png" density="ldpi" />
+        <icon background="@color/cdv_splashscreen_icon_background" foreground="res/drawable-hdpi/icon_white_green_span.png" density="hdpi" />
+        <icon background="@color/cdv_splashscreen_icon_background" foreground="res/drawable-xhdpi/icon_white_green_span.png" density="xhdpi" />
+        <icon background="@color/cdv_splashscreen_icon_background" foreground="res/drawable-xxhdpi/icon_white_green_span.png" density="xxhdpi" />
+        <icon background="@color/cdv_splashscreen_icon_background" foreground="res/drawable-xxxhdpi/icon_white_green_span.png" density="xxxhdpi" />
 
         <!-- <splash density="land-hdpi" src="res/drawable-hdpi/icon_white_green_span.png" />
         <splash density="land-ldpi" src="res/drawable-ldpi/icon_white_green_span.png" />
@@ -33,8 +36,19 @@
         <splash density="port-xxxhdpi" src="res/drawable-xxxhdpi/icon_white_green_span.png" /> -->
 
         <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/splashscreen/splash.png" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#43A047" />
+        <preference name="AndroidWindowSplashScreenIconBackgroundColor" value="#43A047" />
         <preference name="scheme" value="http" />
 
-        <preference name="AndroidWindowSplashScreenBackground" value="#43A047" />
+        <preference name="android-minSdkVersion" value="21" />
+        <preference name="android-targetSdkVersion" value="34" />
+
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+
+
+
+
     </platform> 
 </widget>
