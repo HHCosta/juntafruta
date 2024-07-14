@@ -33,6 +33,7 @@
         <splash density="port-xxxhdpi" src="res/drawable-xxxhdpi/icon_white_green_span.png" /> -->
 
         <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/splashscreen/splash.png" />
+        <preference name="scheme" value="http" />
 
         <preference name="AndroidWindowSplashScreenBackground" value="#43A047" />
     </platform> 
