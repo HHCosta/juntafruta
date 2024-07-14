@@ -66,11 +66,12 @@ function startModalColeta()
             $('#coletaSaveLoading').addClass("hide");
             $('#btnModalColetaCadastrar').removeClass("disabled");
 
-            $("#txtEnderecoColeta").val("");
             $("#txtItensColeta").val("");
+            $("#txtPesoColeta").val("");
             $("#txtPhoneColeta").val("");
             $("#txtNomeContatoColeta").val("");
             swal("Cadastrado!", "Dados enviados com sucesso", "success");
+            $('#modalColeta').modal('close');
         }
     })
 }
