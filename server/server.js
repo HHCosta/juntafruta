@@ -10,11 +10,12 @@ const port      = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const con = mysql.createConnection(dbOptions);
+
 
 app.post('/savecoleta', (req, res) => {
     const coleta = req.body;
-    console.log(coleta);
+    // console.log(coleta);
+    const con = mysql.createConnection(dbOptions);
 
     con.connect(function(err) {
         if (err)
