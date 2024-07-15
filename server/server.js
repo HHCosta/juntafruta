@@ -33,11 +33,11 @@ app.post('/savecoleta', (req, res) => {
         console.log("Connected!");
         
         const sqlInsert = `
-            INSERT INTO coletas(device_id, endereco, peso, itens_coleta, nome, phone)
-            VALUES(?, ?, ?, ?, ?, ?)
+            INSERT INTO coletas(device_id, endereco, peso, itens_coleta, nome, phone, status)
+            VALUES(?, ?, ?, ?, ?, ?, ?)
         `;
 
-        const sqlInsertValues = [coleta.deviceid, coleta.endereco, coleta.peso, coleta.itens_coleta, coleta.nome, coleta.phone];
+        const sqlInsertValues = [coleta.deviceid, coleta.endereco, coleta.peso, coleta.itens_coleta, coleta.nome, coleta.phone, 0];
 
         con.query(sqlInsert, sqlInsertValues, function (err, result) {
             if (err)
