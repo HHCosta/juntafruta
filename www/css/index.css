@@ -119,3 +119,15 @@ nav{
 .leaflet-top, .leaflet-bottom{
     z-index: 990 !important;
 }
+
+.btn-fechar-minhas-coletas{
+    color:#CC0000 !important;
+}
+
+.item-minhas-coletas i{
+    margin-right: 10px;
+}
+
+.item-minhas-coletas span{
+    font-size: 11pt;
+}

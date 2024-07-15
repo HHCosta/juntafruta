@@ -16,23 +16,42 @@ function onDeviceReady() {
     startModalColeta();
     startMapa();
     starGeolocation();
+    startModalMinhasColetas();
 }
 
 
 function startAppMenu()
 {
     $('#appMenu').sidenav();
+
+    $('#mnuIniciarColeta').on("click",() => {
+        abrirModalColeta();
+        $('#appMenu').sidenav("close");
+    })
+    
+    $('#mnuLocais').on("click",() => {
+        swal("Em construção");
+        $('#appMenu').sidenav("close");
+    })
+
+    $('#mnuMinhasColetas').on("click",() => {
+        $("#modalMinhasColetas").modal("open");
+        $('#appMenu').sidenav("close");
+
+        carregarListaMinhasColetas();
+    })
+}
+
+function startModalMinhasColetas()
+{
+    $('#modalMinhasColetas').modal();
 }
 
 function startModalColeta()
 {
     $('#modalColeta').modal();
     $('#btnColeta').on('click', async function() {
-        $('#modalColeta').modal('open');
-        var endColeta = await getAddressFromLatLng(userLat, userLng);
-        // var valorEndereco = `${endColeta.address.city}, ${endColeta.address.suburb}, ${endColeta.address.road}, ${endColeta.address.house_number}, ${endColeta.address.postcode}`;
-        var valorEndereco = `${endColeta.address.road}, ${endColeta.address.house_number} - ${endColeta.address.suburb} - ${endColeta.address.city} - ${endColeta.address.state} - ${endColeta.address.postcode}`;
-        $("#txtEnderecoColeta").val(valorEndereco);
+        abrirModalColeta();
     });
 
     $('#btnAtualizarEnderecoColeta').on('click', async function() {
@@ -70,7 +89,7 @@ function startModalColeta()
             $("#txtPesoColeta").val("");
             $("#txtPhoneColeta").val("");
             $("#txtNomeContatoColeta").val("");
-            swal("Cadastrado!", "Dados enviados com sucesso", "success");
+            swal("Cadastrado!", "DadcarregarListaMinhasColetas()os enviados com sucesso", "success");
             $('#modalColeta').modal('close');
         }
     })
@@ -135,7 +154,7 @@ function starGeolocation()
             enableHighAccuracy: true 
         });
     });
-}
+}carregarListaMinhasColetas()
 
 function geolocationResponse(position)
 {
@@ -259,4 +278,40 @@ function sendColeta()
         });
     })
     
+}
+
+async function abrirModalColeta()
+{
+    $('#modalColeta').modal('open');
+    var endColeta = await getAddressFromLatLng(userLat, userLng);
+    // var valorEndereco = `${endColeta.address.city}, ${endColeta.address.suburb}, ${endColeta.address.road}, ${endColeta.address.house_number}, ${endColeta.address.postcode}`;
+    var valorEndereco = `${endColeta.address.road}, ${endColeta.address.house_number} - ${endColeta.address.suburb} - ${endColeta.address.city} - ${endColeta.address.state} - ${endColeta.address.postcode}`;
+    $("#txtEnderecoColeta").val(valorEndereco);
+}
+
+function carregarListaMinhasColetas()
+{
+    $("#listaMinhasColetas").html(`
+        <li class="collection-item item-minhas-coletas">
+            <div>
+                <i class="fa-solid fa-location-pin"></i>
+                <span>
+                    Rua XXXX
+                </span>
+            </div>
+            <div>
+                <i class="fa-solid fa-weight-hanging"></i>
+                <span>
+                    10 Kg
+                </span>
+            </div>
+            <div>
+                <i class="fa-solid fa-truck"></i>
+                <span>
+                    Aguardando Coleta
+                </span>
+            </div>
+        </li>    
+    `);
+
 }

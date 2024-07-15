@@ -41,10 +41,13 @@
 
         <ul id="appMenu" class="sidenav">
             <li>
-                <a href="#!">Iniciar Coleta</a>
+                <a id="mnuIniciarColeta" href="#!">Iniciar Coleta</a>
             </li>
             <li>
-                <a href="#!">Locais</a>
+                <a id="mnuLocais" href="#!">Locais</a>
+            </li>
+            <li>
+                <a id="mnuMinhasColetas" href="#!">Minhas Coletas</a>
             </li>
         </ul>
 
@@ -124,6 +127,18 @@
                     </div>
                 </div>
                 
+            </div>
+        </div>
+
+        <div id="modalMinhasColetas" class="modal">
+            <div class="modal-content">
+                <h6>Minhas Coletas Cadastradas</h6>
+                <ul id="listaMinhasColetas" class="collection">
+                    
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat btn-fechar-minhas-coletas">Fechar</a>
             </div>
         </div>
 
