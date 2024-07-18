@@ -89,7 +89,7 @@ function startModalColeta()
             $("#txtPesoColeta").val("");
             $("#txtPhoneColeta").val("");
             $("#txtNomeContatoColeta").val("");
-            swal("Cadastrado!", "DadcarregarListaMinhasColetas()os enviados com sucesso", "success");
+            swal("Cadastrado!", "Dados enviados com sucesso", "success");
             $('#modalColeta').modal('close');
         }
     })
@@ -154,7 +154,7 @@ function starGeolocation()
             enableHighAccuracy: true 
         });
     });
-}carregarListaMinhasColetas()
+}
 
 function geolocationResponse(position)
 {
@@ -291,27 +291,63 @@ async function abrirModalColeta()
 
 function carregarListaMinhasColetas()
 {
-    $("#listaMinhasColetas").html(`
-        <li class="collection-item item-minhas-coletas">
-            <div>
-                <i class="fa-solid fa-location-pin"></i>
-                <span>
-                    Rua XXXX
-                </span>
-            </div>
-            <div>
-                <i class="fa-solid fa-weight-hanging"></i>
-                <span>
-                    10 Kg
-                </span>
-            </div>
-            <div>
-                <i class="fa-solid fa-truck"></i>
-                <span>
-                    Aguardando Coleta
-                </span>
-            </div>
-        </li>    
-    `);
+    let deviceid = device.uuid != null ? device.uuid : "dev";
+    var settings = {
+        "url": `http://109.199.109.64:3000/minhascoletas/${deviceid}`,
+        "method": "GET",
+        "timeout": 0
+    };
+            
+    
+    $.ajax(settings).done(function (response) {
+        const coletas = response.coletas;
+        $("#listaMinhasColetas").empty();
+        for(let ix = 0; ix < coletas.length; ix++)
+        {
+            const registro = coletas[ix];
+
+            let status = "";
+            if(registro.status == 0)
+            {
+                status = "Aguardando Coleta";
+            }
+            else if(registro.status == 1)
+            {
+                status = "Coletado";
+            }
+            else if(registro.status == 2)
+            {
+                status = "Problema ao Coletar";
+            }           
+             
+            const htmlItem = `
+                <li class="collection-item item-minhas-coletas">
+                    <div>
+                        <i class="fa-solid fa-location-pin"></i>
+                        <span>
+                            ${registro.endereco}
+                        </span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-weight-hanging"></i>
+                        <span>
+                            ${registro.peso}
+                        </span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-truck"></i>
+                        <span>
+                            ${status}
+                        </span>
+                    </div>
+                </li>             
+            `;
+            $("#listaMinhasColetas").append(htmlItem);
+        }
+        
+    });
+
+        
+
 
 }
