@@ -12,59 +12,93 @@ app.use(bodyParser.json());
 
 
 
-app.post('/savecoleta', (req, res) => {
+app.post('/savecoleta', async (req, res) => {
     const coleta = req.body;
     // console.log(coleta);
-    const con = mysql.createConnection(dbOptions);
-
-    con.connect(function(err) {
-        if (err)
-        {
-            console.log(err);
-
-            res.status(500).send({
-                "status": err
-            });
-
-            con.end();
-            return;
-        }
-
-        console.log("Connected!");
+   
         
-        const sqlInsert = `
-            INSERT INTO coletas(device_id, endereco, peso, itens_coleta, nome, phone, status)
-            VALUES(?, ?, ?, ?, ?, ?, ?)
-        `;
+    const sqlInsert = `
+        INSERT INTO coletas(device_id, endereco, peso, itens_coleta, nome, phone, status)
+        VALUES(?, ?, ?, ?, ?, ?, ?)
+    `;
 
-        const sqlInsertValues = [coleta.deviceid, coleta.endereco, coleta.peso, coleta.itens_coleta, coleta.nome, coleta.phone, 0];
+    const sqlInsertValues = [coleta.deviceid, coleta.endereco, coleta.peso, coleta.itens_coleta, coleta.nome, coleta.phone, 0];
 
-        con.query(sqlInsert, sqlInsertValues, function (err, result) {
+    let dbResult;
+
+    try
+    {
+        dbResult = await runDB(sqlInsert, sqlInsertValues);
+    }
+    catch(err)
+    {
+        res.status(500).send({
+            "status": err
+        });        
+
+        console.log(err);
+
+        con.end();
+        return;
+    }
+
+
+    res.status(200).send({
+        "status": "OK"
+    });
+
+
+});
+
+app.get('/minhascoletas/:deviceid', async (req, res) => {
+    const deviceId = req.params.deviceid;
+    const sql = `SELECT * FROM coletas WHERE device_id = ?`;
+    const sqlValues = [deviceId];
+
+    const dbResult = await runDB(sql, sqlValues);
+
+    res.status(200).send({
+        "coletas": dbResult
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Junta Fruta server listening on port ${port}`)
+});
+
+function runDB(sql,sqlValues)
+{
+    return new Promise((resolve, reject) => {
+        const con = mysql.createConnection(dbOptions);
+
+        con.connect(function(err) {
             if (err)
             {
                 console.log(err);
-
-                res.status(500).send({
-                    "status": err
-                });
-
+    
+                reject(err);
+    
                 con.end();
                 return;
             }
 
-            // console.log("Result: " + result);
-
-            res.status(200).send({
-                "status": "OK"
+            con.query(sql, sqlValues, function (err, result) {
+                if (err)
+                {
+                    console.log(err);
+    
+                    reject(err);
+    
+                    con.end();
+                    return;
+                }
+    
+                // console.log("Result: " + result);
+    
+                resolve(result);
+    
+                con.end();
             });
-
-            con.end();
         });
     });
-
-
-})
-
-app.listen(port, () => {
-    console.log(`Junta Fruta server listening on port ${port}`)
-})
+}
