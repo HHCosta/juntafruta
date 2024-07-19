@@ -18,11 +18,11 @@ app.post('/savecoleta', async (req, res) => {
    
         
     const sqlInsert = `
-        INSERT INTO coletas(device_id, endereco, peso, itens_coleta, nome, phone, status)
-        VALUES(?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO coletas(device_id, endereco, latitude, longitude, peso, itens_coleta, nome, phone, status)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    const sqlInsertValues = [coleta.deviceid, coleta.endereco, coleta.peso, coleta.itens_coleta, coleta.nome, coleta.phone, 0];
+    const sqlInsertValues = [coleta.deviceid, coleta.endereco, coleta.latitude, coleta.longitude, coleta.peso, coleta.itens_coleta, coleta.nome, coleta.phone, 0];
 
     let dbResult;
 

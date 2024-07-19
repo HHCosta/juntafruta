@@ -291,8 +291,22 @@ function validateFormularioColeta()
 
 function sendColeta()
 {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         let deviceid = device.uuid != null ? device.uuid : "dev";
+        let lat = 0;
+        let long = 0;
+        let endereco = $("#txtEnderecoColeta").val();
+        let latlng = await getLatLngFromAddress(endereco);
+
+        if(latlng.length!=0)
+        {
+            latlng = latlng[0];
+
+            lat = latlng.lat;
+            long = latlng.lon;
+        }
+
+        
         var settings = {
             "url": "http://109.199.109.64:3000/savecoleta",
             "method": "POST",
@@ -303,6 +317,8 @@ function sendColeta()
             "data": JSON.stringify({
                 "deviceid": deviceid,
                 "endereco": $("#txtEnderecoColeta").val(),
+                "latitude": lat,
+                "longitude": long,
                 "peso": $("#txtPesoColeta").val(),
                 "itens_coleta": $("#txtItensColeta").val(),
                 "nome": $("#txtNomeContatoColeta").val(),
