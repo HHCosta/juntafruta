@@ -120,7 +120,8 @@ nav{
     z-index: 990 !important;
 }
 
-.btn-fechar-minhas-coletas{
+.btn-fechar-minhas-coletas
+{
     color:#CC0000 !important;
 }
 
@@ -130,4 +131,12 @@ nav{
 
 .item-minhas-coletas span{
     font-size: 11pt;
+}
+
+.coleta-controls{
+    text-align: right;
+}
+
+.btn-coleta-remove{
+    background-color: #CC0000 !important;
 }

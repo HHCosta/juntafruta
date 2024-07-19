@@ -340,7 +340,7 @@ function carregarListaMinhasColetas()
                             ${status}
                         </span>
                     </div>
-                    <div>
+                    <div class="coleta-controls">
                         <a href="#!" class="btn-floating btn-small btn-coleta-remove" data-id="${registro.id}">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
@@ -352,22 +352,38 @@ function carregarListaMinhasColetas()
         
         $(`.btn-coleta-remove`).on("click", function(){
             const idColeta = $(this).attr("data-id");
-            var settings = {
-                "url": "http://109.199.109.64:3000/deletecoleta",
-                "method": "DELETE",
-                "timeout": 0,
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "data": JSON.stringify({
-                    "id": idColeta
-                })
-            };
+
+            swal({
+                title: "Você deseja remover esta coleta?",
+                text: "Uma vez apagado não será possível recuperar.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete == true)
+                {
+                    var settings = {
+                        "url": "http://109.199.109.64:3000/deletecoleta",
+                        "method": "DELETE",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "data": JSON.stringify({
+                            "id": idColeta
+                        })
+                    };
+                        
                 
-        
-            $.ajax(settings).done(function (response) {
-                carregarListaMinhasColetas();
-            });
+                    $.ajax(settings).done(function (response) {
+                        swal("Registro removido com sucesso");
+                        carregarListaMinhasColetas();
+                    });                    
+                }
+              });
+
+            
         })
 
     });
