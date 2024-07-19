@@ -62,6 +62,41 @@ app.get('/minhascoletas/:deviceid', async (req, res) => {
     });
 });
 
+app.delete('/deletecoleta', async (req, res) => {
+    const id = req.body.id;
+   
+        
+    const sqlDelete = `
+        DELETE FROM coletas WHERE id = ?
+    `;
+
+    const sqlDeleteValues = [id];
+
+    
+    try
+    {
+        await runDB(sqlDelete, sqlDeleteValues);
+    }
+    catch(err)
+    {
+        res.status(500).send({
+            "status": err
+        });        
+
+        console.log(err);
+
+        con.end();
+        return;
+    }
+
+
+    res.status(200).send({
+        "status": "OK"
+    });
+
+
+});
+
 app.listen(port, () => {
     console.log(`Junta Fruta server listening on port ${port}`)
 });

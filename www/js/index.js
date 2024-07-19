@@ -340,11 +340,36 @@ function carregarListaMinhasColetas()
                             ${status}
                         </span>
                     </div>
+                    <div>
+                        <a href="#!" class="btn-floating btn-small btn-coleta-remove" data-id="${registro.id}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </div>
                 </li>             
             `;
             $("#listaMinhasColetas").append(htmlItem);
         }
         
+        $(`.btn-coleta-remove`).on("click", function(){
+            const idColeta = $(this).attr("data-id");
+            var settings = {
+                "url": "http://109.199.109.64:3000/deletecoleta",
+                "method": "DELETE",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "id": idColeta
+                })
+            };
+                
+        
+            $.ajax(settings).done(function (response) {
+                carregarListaMinhasColetas();
+            });
+        })
+
     });
 
         
