@@ -340,7 +340,16 @@ async function abrirModalColeta()
     $('#modalColeta').modal('open');
     var endColeta = await getAddressFromLatLng(userLat, userLng);
     // var valorEndereco = `${endColeta.address.city}, ${endColeta.address.suburb}, ${endColeta.address.road}, ${endColeta.address.house_number}, ${endColeta.address.postcode}`;
-    var valorEndereco = `${endColeta.address.road}, ${endColeta.address.house_number} - ${endColeta.address.suburb} - ${endColeta.address.city} - ${endColeta.address.state} - ${endColeta.address.postcode}`;
+
+    let vEndereco = typeof endColeta.address.road != 'undefined' ? endColeta.address.road : "";
+    let vHouseNum = typeof endColeta.address.house_number != 'undefined' ? endColeta.address.house_number : "";
+    let vSuburb = typeof endColeta.address.suburb != 'undefined' ? endColeta.address.suburb : "";
+    let vCity = typeof endColeta.address.city != 'undefined' ? endColeta.address.city : "";
+    let vState = typeof endColeta.address.state != 'undefined' ? endColeta.address.state : "";
+    let vPostCode = typeof endColeta.address.postcode != 'undefined' ? endColeta.address.postcode : "";
+
+
+    var valorEndereco = `${vEndereco}${vHouseNum.length > 0 ? ',': ''} ${vHouseNum} - ${vSuburb} - ${vCity} - ${vState} - ${vPostCode}`;
     $("#txtEnderecoColeta").val(valorEndereco);
 }
 
