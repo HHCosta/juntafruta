@@ -4,6 +4,8 @@ var mapa = null;
 var pinIcon = null;
 var marcador = null;
 var modeActive = false;
+var pendingIcon = null;
+var marcadoresColeta = [];
 
 document.addEventListener('deviceready', onDeviceReady, false);
 
@@ -164,12 +166,71 @@ function activateAdmMode()
 {
     $("#btnToggleAdmMode").addClass("btn-toggle-adm-mode-active");
     $("#btnToggleAdmMode").removeClass("btn-toggle-adm-mode-inactive");
+
+    
+
+    atualizarMarcadoresColetaPendente();
+}
+
+function limparMarcadoresColetasPendentes()
+{
+    // limpar marcadores existentes
+    for(let ix=0;ix < marcadoresColeta.length;ix++)
+    {
+        let m = marcadoresColeta[ix];
+        mapa.removeLayer(m);
+    }
+}
+
+function atualizarMarcadoresColetaPendente()
+{
+    limparMarcadoresColetasPendentes();
+
+    pendingIcon = L.icon({
+        iconUrl: 'img/relogio.png',
+        iconSize: [32, 32]
+    });
+
+    marcadoresColeta = [];
+
+    var settings = {
+        "url": `http://109.199.109.64:3000/coletas-pendentes`,
+        "method": "GET",
+        "timeout": 0
+    };
+
+    $.ajax(settings).done(function (response) {
+        const list = response.list;
+
+        for(let ix=0;ix < list.length;ix++)
+        {
+            let reg = list[ix];
+            let lat = reg.latitude;
+            let lng = reg.longitude;
+
+            if(lat == null || lng == null)
+            {
+                continue;
+            }
+            if(lat == 0 || lng == 0)
+            {
+                continue;
+            }
+    
+
+            let m = L.marker([lat, lng], {icon: pendingIcon});
+            m.addTo(mapa);
+
+            marcadoresColeta.push(m);
+        }
+    });
 }
 
 function inactivateAdmMode()
 {
     $("#btnToggleAdmMode").addClass("btn-toggle-adm-mode-inactive");
     $("#btnToggleAdmMode").removeClass("btn-toggle-adm-mode-active");
+    limparMarcadoresColetasPendentes();
 }
 
 function starGeolocation()
