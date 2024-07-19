@@ -116,6 +116,13 @@ nav{
     z-index: 990 !important;
 }
 
+.change-mode-btn{
+    position: fixed !important;
+    top: 150px;
+    right: 20px;
+    z-index: 990 !important;
+}
+
 .leaflet-top, .leaflet-bottom{
     z-index: 990 !important;
 }
@@ -139,4 +146,12 @@ nav{
 
 .btn-coleta-remove{
     background-color: #CC0000 !important;
+}
+
+.btn-toggle-adm-mode-active{
+    background-color: #43A047 !important;
+}
+
+.btn-toggle-adm-mode-inactive{
+    background-color: #AAAAAA !important;
 }

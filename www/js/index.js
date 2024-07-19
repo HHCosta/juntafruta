@@ -3,6 +3,7 @@ var userLng = null;
 var mapa = null;
 var pinIcon = null;
 var marcador = null;
+var modeActive = false;
 
 document.addEventListener('deviceready', onDeviceReady, false);
 
@@ -15,6 +16,7 @@ function onDeviceReady() {
     startAppMenu();
     startModalColeta();
     startMapa();
+    startMode();
     starGeolocation();
     startModalMinhasColetas();
 }
@@ -131,6 +133,43 @@ function startMapa()
         
         setLocation(e.latlng.lat, e.latlng.lng);
     });
+}
+
+function startMode()
+{
+    inactivateAdmMode();
+    modeActive = false;
+    $("#btnToggleAdmMode").on("click", function(){
+        if(modeActive == true)
+        {
+            modeActive = false;
+        }
+        else
+        {
+            modeActive = true;
+        }
+
+        if(modeActive == true)
+        {
+            activateAdmMode();
+        }
+        else
+        {
+            inactivateAdmMode();
+        }
+    })
+}
+
+function activateAdmMode()
+{
+    $("#btnToggleAdmMode").addClass("btn-toggle-adm-mode-active");
+    $("#btnToggleAdmMode").removeClass("btn-toggle-adm-mode-inactive");
+}
+
+function inactivateAdmMode()
+{
+    $("#btnToggleAdmMode").addClass("btn-toggle-adm-mode-inactive");
+    $("#btnToggleAdmMode").removeClass("btn-toggle-adm-mode-active");
 }
 
 function starGeolocation()

@@ -97,6 +97,14 @@ app.delete('/deletecoleta', async (req, res) => {
 
 });
 
+app.get("/coletas-pendentes", async (req, res) => {
+    const sql = `SELECT * FROM coletas WHERE status = 0`;
+    const response = await runDB(sql, []);
+    res.status(200).send({
+        "list": response
+    })
+})
+
 app.listen(port, () => {
     console.log(`Junta Fruta server listening on port ${port}`)
 });
