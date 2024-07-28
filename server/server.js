@@ -97,6 +97,19 @@ app.delete('/deletecoleta', async (req, res) => {
 
 });
 
+app.post('/efetuarcoleta', async (req, res) => {
+    const idColeta = req.body.id;
+    const sql = `UPDATE coletas SET status = 1 WHERE id = ?`;
+    const sqlValues = [idColeta];
+
+    const dbResult = await runDB(sql, sqlValues);
+
+    res.status(200).send({
+        "status": "OK"
+    });
+});
+
+
 app.get("/coletas-pendentes", async (req, res) => {
     const sql = `SELECT * FROM coletas WHERE status = 0`;
     const response = await runDB(sql, []);
