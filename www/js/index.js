@@ -207,6 +207,7 @@ function atualizarMarcadoresColetaPendente()
             let reg = list[ix];
             let lat = reg.latitude;
             let lng = reg.longitude;
+            let endereco = reg.endereco;
 
             if(lat == null || lng == null)
             {
@@ -219,11 +220,59 @@ function atualizarMarcadoresColetaPendente()
     
 
             let m = L.marker([lat, lng], {icon: pendingIcon});
+
+            // var popup = L.popup();
+            // popup.setContent(`<p>${endereco}</p>`);
+            // m.bindPopup(popup).openPopup();
+
+            m.bindPopup(`
+                <p>${endereco}</p>
+                <div class="btn-fazer-coleta-wrap">
+                    <a href="#!" class="btn-small btn-fazer-coleta" data-id="${reg.id}" onClick="doColeta('${reg.id}')">
+                        <i class="fa-solid fa-check left"></i>
+                        Coletar
+                    </a>
+                </div>
+            `).openPopup();
             m.addTo(mapa);
 
             marcadoresColeta.push(m);
         }
+
     });
+}
+
+function doColeta(idColeta)
+{
+    swal({
+        title: "Você deseja efetuar esta coleta?",
+        text: "",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willUpdate) => {
+        if (willUpdate == true)
+        {
+            var settings = {
+                "url": "http://109.199.109.64:3000/efetuarcoleta",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "id": idColeta
+                })
+            };
+                
+        
+            $.ajax(settings).done(function (response) {
+                swal("Coleta efetuada com sucesso");
+                atualizarMarcadoresColetaPendente();
+            });                    
+        }
+    });  
 }
 
 function inactivateAdmMode()

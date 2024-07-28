@@ -155,3 +155,12 @@ nav{
 .btn-toggle-adm-mode-inactive{
     background-color: #AAAAAA !important;
 }
+
+.btn-fazer-coleta{
+    color:#FFFFFF !important;
+    background-color: #43A047;
+}
+
+.btn-fazer-coleta-wrap{
+    text-align: right;
+}
