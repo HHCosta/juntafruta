@@ -25,3 +25,5 @@ node_modules/
 /plugins/
 /platforms/
 /server/db.json
+
+/work/googleplay
