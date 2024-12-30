@@ -20,9 +20,9 @@ Junta Fruta is a mobile application designed to facilitate the connection betwee
 ## Screenshots
 
 <!-- Add your screenshots here -->
-![Home/Map](screenshots/home_map.jpg)
-![Left Icon Menu](screenshots/left_icon_menu.png)
-![Register Food to Collect](screenshots/register_food.jpg)
-![Map to See Collect to Pickup](screenshots/collect_map.jpg)
-![List of Your Collects](screenshots/collect_list.png)
+![Home/Map](screenshots/home_map.jpg | width=300)
+![Left Icon Menu](screenshots/left_icon_menu.png | width=300)
+![Register Food to Collect](screenshots/register_food.jpg | width=300)
+![Map to See Collect to Pickup](screenshots/collect_map.jpg | width=300)
+![List of Your Collects](screenshots/collect_list.png | width=300)
 
